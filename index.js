@@ -1,7 +1,6 @@
 (function () {
 API.on(API.CHAT, checkCommand);
 API.on(API.SCORE_UPDATE, checkScore);
-API.sendChat(API.getUser().username+" Activated.");
 
 function checkCommand(data) {
 if (data.type === "message" && data.message === "!kill") {
