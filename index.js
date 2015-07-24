@@ -7,8 +7,8 @@ if (data.type === "message" && data.message === "!kill") {
 API.off(API.CHAT, checkCommand);
 API.sendChat("Deactivated.");
 }
-if (data.type === "message" && data.message === "!cookie") {
-  API.sendChat("@"+data.un+" eats a cookie!")
+if (data.type === "emote") {
+  API.sendChat(data.un+": "+data.message)
 }
 }
 
