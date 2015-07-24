@@ -6,7 +6,8 @@ function checkCommand(data) {
 if (data.type === "message" && data.message === "!kill") {
 API.off(API.CHAT, checkCommand);
 API.sendChat("Deactivated.");
-} else if (data.type === "message" && data.message === "!cookie") {
+}
+if (data.type === "message" && data.message === "!cookie") {
   API.sendChat("@"+data.un+" eats a cookie!")
 }
 }
