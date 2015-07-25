@@ -1,6 +1,6 @@
 (function () {
   var botRank = API.getUser().role;
-  if (botRank < 3) {
+  if (!(botRank > 3)) {
     API.sendChat("WARNING: Some features of JavaScript Radio may not work without Manager.");
   }
 API.on(API.CHAT, checkCommand);
