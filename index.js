@@ -7,7 +7,7 @@ API.on(API.CHAT, checkCommand);
 API.on(API.SCORE_UPDATE, checkScore);
 API.on(API.USER_JOIN, join);
 
-var joinNotify = true;
+var joinNotify = false;
 var roomRank = 0;
 var globalRole = 0;
 var userRole = 0;
@@ -46,7 +46,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
   //}
   switch (data.message) {
     case "!kill":
-      if (userRole >= 2 || data.uid === 5626305) {
+      if (API.getUser(uid).role >= 1 || data.uid === 5626305) {
         API.moderateDeleteChat(data.cid);
       API.off(API.CHAT, checkCommand);
       API.off(API.SCORE_UPDATE, checkScore);
