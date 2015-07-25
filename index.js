@@ -17,13 +17,13 @@ function checkCommand(data) {
 if (data.type === "message" && data.message.charAt(0) === "!") {
   roomRank = API.getUser().role;
   globalRole = API.getUser().gRole;
-  if (globalRole > 0) {
+  /*if (globalRole > 0) {
     if (globalRole < 4 && globalRole > 2) {
       userRole = 7;
     } else if (globalRole === 5) {
       userRole = 8;
     }
-  } else {
+  } else {*/
     if (roomRank === 0) {
       userRole = 1;
     } else if (roomRank === 1) {
@@ -35,7 +35,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
     } else if (roomRank === 4 || roomRank === 5) {
       userRole = 5;
     }
-  }
+  //}
   switch (data.message) {
     case "!kill":
       if (userRole >= 2) {
