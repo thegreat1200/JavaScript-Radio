@@ -13,7 +13,7 @@ function checkCommand(data) {
 if (data.type === "message" && data.message.charAt(0) === "!") {
   roomRank = API.getUser().role;
   globalRole = API.getUser().gRole;
-  //if (botRank > 1) {
+  //if (botRank > 2) {
   if (data.uid === "5626305") {
     userRole = 4;
   } else if (globalRole > 0) {
@@ -51,9 +51,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
     case "!cookie":
       if (data.message.length > 8) {
         data.message.replace("!cookie ","");
-        if (data.message > 0) {
               API.sendChat("@"+data.un+" sends "+data.message+" a Cookie!");
-        }
       } else {
         API.sendChat(data.un+" eats a Cookie!");
       }
