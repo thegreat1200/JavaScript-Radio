@@ -1,16 +1,16 @@
 (function () {
-  var botRank = API.getUser().role;
+  /*var botRank = API.getUser().role;
   if (!(botRank > 3)) {
     API.sendChat("WARNING: Some features of JavaScript Radio may not work without Manager.");
-  }
+  }*/
   function startup() {
 API.on(API.CHAT, checkCommand);
 API.on(API.SCORE_UPDATE, checkScore);
 API.on(API.USER_JOIN, join);
-API.sendChat(API.getUser().username+" has been activated!");
+//API.sendChat(API.getUser().username+" has been activated!");
   }
   startup();
-
+/*
 var joinNotify = false;
 var roomRank = 0;
 var globalRole = 0;
@@ -35,7 +35,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
     } else if (globalRole === 5) {
       userRole = 8;
     }
-  } else {*/
+  } else {
     if (roomRank === 0) {
       userRole = 1;
     } else if (roomRank === 1) {
@@ -99,7 +99,7 @@ if (data.type === "emote") {
   API.moderateDeleteChat(data.cid);
   API.sendChat(data.un+": "+data.message)
 }
-}
+}*/
 
 var grabbed = "";
 
@@ -107,7 +107,7 @@ function checkScore(data) {
 if (data.positive >= (API.getAudience().length/2) && data.id !== grabbed) {
 $("div#grab").click();
 $($(".grab .menu ul li")[0]).mousedown();
-API.sendChat(API.getMedia().title+" By: "+API.getMedia().author+" was grabbed! Thank You, @"+API.getDJ().username+"!");
+//API.sendChat(API.getMedia().title+" By: "+API.getMedia().author+" was grabbed! Thank You, @"+API.getDJ().username+"!");
 grabbed = data.id;
 }
 }
