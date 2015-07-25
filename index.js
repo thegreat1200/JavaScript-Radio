@@ -3,7 +3,7 @@ API.on(API.CHAT, checkCommand);
 API.on(API.SCORE_UPDATE, checkScore);
 
 function checkCommand(data) {
-if (data.type === "message" && data.message.chatAt(0) === "!") {
+if (data.type === "message" && data.message.charAt(0) === "!") {
   switch (data.message) {
     case "kill":
       API.off(API.CHAT, checkCommand);
