@@ -51,7 +51,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
     case "!cookie":
       cookieNum = Math.floor((Math.random() * (cookieText.length - 1)) + 0);
       API.moderateDeleteChat(data.cid);
-        API.sendChat(data.un+);
+        API.sendChat(data.un+cookieText[cookieNum]);
       break;
     case "!skip":
       if (userRole >= 2) {
