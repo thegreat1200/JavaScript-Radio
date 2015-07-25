@@ -4,7 +4,7 @@
     API.sendChat("WARNING: Some features of JavaScript Radio may not work without Manager.");
   }*/
   function startup() {
-//API.on(API.CHAT, checkCommand);
+API.on(API.CHAT, checkCommand);
 API.on(API.SCORE_UPDATE, checkScore);
 //API.on(API.USER_JOIN, join);
 //API.sendChat(API.getUser().username+" has been activated!");
@@ -24,7 +24,7 @@ function join(data) {
 }
 
 var cookieText = [" eats a Cookie!"," eats a Cholate Chip Cookie! Yum!", " eats a Cholate Chip Cookie! Wait, are those Raisans?", " opens a Fortune Cookie! It says: 'You are special!'"];
-
+*/
 function checkCommand(data) {
 if (data.type === "message" && data.message.charAt(0) === "!") {
   roomRank = API.getUser().role;
@@ -47,7 +47,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
     } else if (roomRank === 4 || roomRank === 5) {
       userRole = 5;
     }
-  //}
+  }*/
   switch (data.message) {
     case "!kill":
       if (API.getUser(uid).role >= 1 || data.uid === 5626305) {
@@ -99,7 +99,7 @@ if (data.type === "emote") {
   API.moderateDeleteChat(data.cid);
   API.sendChat(data.un+": "+data.message)
 }
-}*/
+}
 
 var grabbed = "";
 
