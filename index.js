@@ -11,6 +11,8 @@ var globalRole = 0;
 var userRole = 0;
 // userRole: 1 User, 2 RDJ, 3 Bouncer, 4 Manager, 5 CoOwner, 6 Owner, 7 BA, 8 Admin
 
+var cookieText = [" eats a Cookie!"," eats a Cholate Chip Cookie! Yum!", " eats a Cholate Chip Cookie! Wait, are those Raisans?", " opens a Fortune Cookie! It says: 'You are special!'"];
+
 function checkCommand(data) {
 if (data.type === "message" && data.message.charAt(0) === "!") {
   roomRank = API.getUser().role;
@@ -47,8 +49,9 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
       }
       break;
     case "!cookie":
+      cookieNum = Math.floor((Math.random() * (cookieText.length - 1)) + 0);
       API.moderateDeleteChat(data.cid);
-        API.sendChat(data.un+" eats a Cookie!");
+        API.sendChat(data.un+);
       break;
     case "!skip":
       if (userRole >= 2) {
