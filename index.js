@@ -1,6 +1,8 @@
 (function () {
   var botRank = API.getUser().role;
-  if (botRank > 3) {
+  if (botRank < 3) {
+    API.sendChat("WARNING: Some features of JavaScript Radio may not work without Manager.");
+  }
 API.on(API.CHAT, checkCommand);
 API.on(API.SCORE_UPDATE, checkScore);
 
@@ -76,7 +78,4 @@ API.sendChat(API.getMedia().title+" By: "+API.getMedia().author+" was grabbed! T
 grabbed = data.id;
 }
 }
-} else {
-    API.chatLog("Can't run without Manager or higher.");
-  }
 }).call(this);
