@@ -49,11 +49,14 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
       }
       break;
     case "!cookie":
-      if (data.message.length > 8) {
-        data.message.replace("!cookie ","");
-              API.sendChat("@"+data.un+" sends "+data.message+" a Cookie!");
-      } else {
         API.sendChat(data.un+" eats a Cookie!");
+      break;
+    case "!skip":
+      if (userRole >= 2) {
+        API.moderateMoveDJ(API.getDJ().id, 5);
+        API.sendChat("[@"+data.un+"] Used Skip.");
+      } else {
+        API.sendChat("@"+data.un+" you don't have permission!");
       }
       break;
   }
