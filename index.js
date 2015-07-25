@@ -49,7 +49,18 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
       }
       break;
     case "!cookie":
-      API.sendChat(data.un+" eats a Cookie!");
+      if (data.message.length > 8) {
+        data.message.replace("!cookie ","");
+        if (data.message > 0) {
+          API.getUsers().foreach(function (user) {
+            if (user === data.message) {
+              API.sendChat("@"+data.un+" sends @"+data.message+" a Cookie!");
+            }
+          });
+        }
+      } else {
+        API.sendChat(data.un+" eats a Cookie!");
+      }
       break;
   }
 }
