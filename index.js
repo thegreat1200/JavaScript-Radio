@@ -3,9 +3,17 @@ API.on(API.CHAT, checkCommand);
 API.on(API.SCORE_UPDATE, checkScore);
 
 function checkCommand(data) {
-if (data.type === "message" && data.message === "!kill") {
-API.off(API.CHAT, checkCommand);
-API.sendChat("Deactivated.");
+if (data.type === "message" && data.message.chatAt(0) === "!") {
+  switch (data.message) {
+    case "kill":
+      API.off(API.CHAT, checkCommand);
+      API.off(API.SCORE_UPDATE, checkScore);
+      API.sendChat(API.getUser().username+" Deactivated.")
+      break;
+    case "cookie":
+      API.sendChat(data.un+" eats a Cookie!");
+      break;
+  }
 }
 if (data.type === "emote") {
   API.sendChat(data.un+": "+data.message)
