@@ -5,12 +5,12 @@ API.on(API.SCORE_UPDATE, checkScore);
 function checkCommand(data) {
 if (data.type === "message" && data.message.charAt(0) === "!") {
   switch (data.message) {
-    case "kill":
+    case "!kill":
       API.off(API.CHAT, checkCommand);
       API.off(API.SCORE_UPDATE, checkScore);
       API.sendChat(API.getUser().username+" Deactivated.")
       break;
-    case "cookie":
+    case "!cookie":
       API.sendChat(data.un+" eats a Cookie!");
       break;
   }
