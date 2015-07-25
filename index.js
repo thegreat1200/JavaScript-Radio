@@ -4,9 +4,9 @@
     API.sendChat("WARNING: Some features of JavaScript Radio may not work without Manager.");
   }*/
   function startup() {
-API.on(API.CHAT, checkCommand);
+//API.on(API.CHAT, checkCommand);
 API.on(API.SCORE_UPDATE, checkScore);
-API.on(API.USER_JOIN, join);
+//API.on(API.USER_JOIN, join);
 //API.sendChat(API.getUser().username+" has been activated!");
   }
   startup();
