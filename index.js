@@ -14,7 +14,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
   roomRank = API.getUser().role;
   globalRole = API.getUser().gRole;
   //if (botRank > 1) {
-  if (data.id === "5626305") {
+  if (data.uid === "5626305") {
     userRole = 4;
   } else if (globalRole > 0) {
     if (globalRole < 4 && globalRole > 2) {
