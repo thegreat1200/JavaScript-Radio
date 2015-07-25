@@ -14,9 +14,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
   roomRank = API.getUser().role;
   globalRole = API.getUser().gRole;
   //if (botRank > 2) {
-  if (data.un === "JᵃᵛᵃSᶜʳᶦᵖᵗ + HTML + ᴄss") {
-    userRole = 4;
-  } else if (globalRole > 0) {
+  if (globalRole > 0) {
     if (globalRole < 4 && globalRole > 2) {
       userRole = 7;
     } else if (globalRole === 5) {
@@ -41,27 +39,33 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
   switch (data.message) {
     case "!kill":
       if (userRole >= 4) {
+        API.moderateDeleteChat(data.cid);
       API.off(API.CHAT, checkCommand);
       API.off(API.SCORE_UPDATE, checkScore);
       API.sendChat(API.getUser().username+" Deactivated.")
       } else {
+        API.moderateDeleteChat(data.cid);
         API.sendChat("@"+data.un+" you don't have permission!");
       }
       break;
     case "!cookie":
+      API.moderateDeleteChat(data.cid);
         API.sendChat(data.un+" eats a Cookie!");
       break;
     case "!skip":
       if (userRole >= 2) {
+        API.moderateDeleteChat(data.cid);
         API.moderateMoveDJ(API.getDJ().id, 5);
         API.sendChat("[@"+data.un+"] Used Skip.");
       } else {
+        API.moderateDeleteChat(data.cid);
         API.sendChat("@"+data.un+" you don't have permission!");
       }
       break;
   }
 }
 if (data.type === "emote") {
+  API.moderateDeleteChat(data.cid);
   API.sendChat(data.un+": "+data.message)
 }
 }
