@@ -85,6 +85,10 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
       API.moderateDeleteChat(data.cid);
       API.sendChat("No cmd link.");
       break;
+    case "!upnext":
+      API.moderateDeleteChat(data.cid);
+      API.sendChat("Next song that is comming: "+API.getNextMedia().media.title+" By: "+API.getNextMedia().media.author);
+      break;
   }
 }
 if (data.type === "emote") {
