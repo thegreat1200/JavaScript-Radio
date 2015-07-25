@@ -1,8 +1,8 @@
 (function () {
+  var botRank = API.getUser().role;
+  if (botRank > 3) {
 API.on(API.CHAT, checkCommand);
 API.on(API.SCORE_UPDATE, checkScore);
-
-var botRank = API.getUser().role;
 
 var roomRank = 0;
 var globalRole = 0;
@@ -13,7 +13,6 @@ function checkCommand(data) {
 if (data.type === "message" && data.message.charAt(0) === "!") {
   roomRank = API.getUser().role;
   globalRole = API.getUser().gRole;
-  if (botRank > 3) {
   if (globalRole > 0) {
     if (globalRole < 4 && globalRole > 2) {
       userRole = 7;
@@ -32,9 +31,6 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
     } else if (roomRank === 4 || roomRank === 5) {
       userRole = 5;
     }
-  }
-  } else {
-    API.chatLog("Can't run without Manager or higher.");
   }
   switch (data.message) {
     case "!kill":
@@ -80,4 +76,7 @@ API.sendChat(API.getMedia().title+" By: "+API.getMedia().author+" was grabbed! T
 grabbed = data.id;
 }
 }
+} else {
+    API.chatLog("Can't run without Manager or higher.");
+  }
 }).call(this);
