@@ -13,7 +13,7 @@ function checkCommand(data) {
 if (data.type === "message" && data.message.charAt(0) === "!") {
   roomRank = API.getUser().role;
   globalRole = API.getUser().gRole;
-  //if (botRank > 2) {
+  if (botRank > 3) {
   if (globalRole > 0) {
     if (globalRole < 4 && globalRole > 2) {
       userRole = 7;
@@ -33,9 +33,9 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
       userRole = 5;
     }
   }
-  /*} else {
-    API.chatLog("Can't run without Bouncer or higher.");
-  }*/
+  } else {
+    API.chatLog("Can't run without Manager or higher.");
+  }
   switch (data.message) {
     case "!kill":
       if (userRole >= 4) {
