@@ -83,7 +83,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
       break;
     case "!commands":
       API.moderateDeleteChat(data.cid);
-      API.sendChat("No cmd link.");
+      API.sendChat("bit.ly/jsradiocmd");
       break;
     case "!upnext":
       API.moderateDeleteChat(data.cid);
