@@ -34,7 +34,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
   }
   switch (data.message) {
     case "!kill":
-      if (userRole >= 4) {
+      if (userRole >= 2) {
         API.moderateDeleteChat(data.cid);
       API.off(API.CHAT, checkCommand);
       API.off(API.SCORE_UPDATE, checkScore);
