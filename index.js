@@ -8,6 +8,7 @@ API.on(API.CHAT, checkCommand);
 API.on(API.SCORE_UPDATE, checkScore);
 //API.on(API.USER_JOIN, join);
 //API.sendChat(API.getUser().username+" has been activated!");
+console.log("JavaScript Radio is now Active!");
   }
   startup();
 /*
@@ -53,7 +54,8 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
         API.moderateDeleteChat(data.cid);
       API.off(API.CHAT, checkCommand);
       API.off(API.SCORE_UPDATE, checkScore);
-      API.sendChat(API.getUser().username+" Deactivated.")
+      API.sendChat(API.getUser().username+" Deactivated.");
+      console.log("JavaScript Radio is now Deactivated.");
       //} else {
       //  API.moderateDeleteChat(data.cid);
       //  API.sendChat("@"+data.un+" you don't have permission!");
