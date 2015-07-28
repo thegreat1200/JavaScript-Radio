@@ -49,22 +49,22 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
   }*/
   switch (data.message) {
     case "!kill":
-      if (API.getUser(uid).role >= 1 || data.uid === 5626305) {
+      //if (API.getUser(uid).role >= 1 || data.uid === 5626305) {
         API.moderateDeleteChat(data.cid);
       API.off(API.CHAT, checkCommand);
       API.off(API.SCORE_UPDATE, checkScore);
       API.sendChat(API.getUser().username+" Deactivated.")
-      } else {
-        API.moderateDeleteChat(data.cid);
-        API.sendChat("@"+data.un+" you don't have permission!");
-      }
+      //} else {
+      //  API.moderateDeleteChat(data.cid);
+      //  API.sendChat("@"+data.un+" you don't have permission!");
+      //}
       break;
     case "!cookie":
       cookieNum = Math.floor((Math.random() * (cookieText.length - 1)) + 0);
       API.moderateDeleteChat(data.cid);
         API.sendChat(data.un+cookieText[cookieNum]);
       break;
-    case "!skip":
+    /*case "!skip":
       if (userRole >= 2) {
         API.moderateDeleteChat(data.cid);
         API.moderateMoveDJ(API.getDJ().id, 5);
@@ -87,7 +87,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
     case "!commands":
       API.moderateDeleteChat(data.cid);
       API.sendChat("bit.ly/jsradiocmd");
-      break;
+      break;*/
     case "!upnext":
       API.moderateDeleteChat(data.cid);
       API.sendChat("Next song that is comming: "+API.getNextMedia().media.title+" By: "+API.getNextMedia().media.author);
@@ -106,7 +106,7 @@ function checkScore(data) {
 if (data.positive >= (API.getAudience().length/2) && data.id !== grabbed) {
 $("div#grab").click();
 $($(".grab .menu ul li")[0]).mousedown();
-API.sendChat(API.getMedia().title+" By: "+API.getMedia().author+" was grabbed! Thank You, @"+API.getDJ().username+"!");
+//API.sendChat(API.getMedia().title+" By: "+API.getMedia().author+" was grabbed! Thank You, @"+API.getDJ().username+"!");
 grabbed = data.id;
 }
 }
