@@ -129,7 +129,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
 }
 if (data.type === "emote") {
   API.moderateDeleteChat(data.cid);
-  API.sendChat(data.un+": "+data.message)
+  API.sendChat(data.un+": "+data.message);
 }
 }
 
