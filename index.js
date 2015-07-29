@@ -57,6 +57,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
       userRole = 5;
     }
   }*/
+  var usernameChat = null;
   switch (data.message) {
     case "!kill":
       if (API.getUser(uid).role >= 1 || data.uid === 5626305) {
@@ -104,12 +105,8 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
       API.sendChat("Next song that is comming: "+API.getNextMedia().media.title+" By: "+API.getNextMedia().media.author);
       break;
     case "!eta":
-      var u = lookupUser(chat.uid);
-      if (u.lastEta !== null && (Date.now() - u.lastEta) < 1 * 60 * 60 * 1000) {
-        API.moderateDeleteChat(chat.cid);
-        return void (0);
-      }
-      else u.lastEta = Date.now();
+      usernameChat = data.un;
+      return (getPosition(usernameChat) == 0) ? Math.round(API.getTimeRemaining() / 60) : Math.round((getPosition(usernameChat) + 1) * getAverageTime());
       break;
   }
 }
