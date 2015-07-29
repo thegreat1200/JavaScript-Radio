@@ -60,7 +60,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
   var usernameChat = null;
   switch (data.message) {
     case "!kill":
-      if (API.getUser(uid).role >= 1 || data.uid === 5626305) {
+      if (API.getUser(data.uid).role >= 1 || data.uid === 5626305) {
         API.moderateDeleteChat(data.cid);
       API.off(API.CHAT, checkCommand);
       API.off(API.SCORE_UPDATE, checkScore);
