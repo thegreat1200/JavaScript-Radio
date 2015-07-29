@@ -7,7 +7,7 @@
 API.on(API.CHAT, checkCommand);
 API.on(API.SCORE_UPDATE, checkScore);
 //API.on(API.USER_JOIN, join);
-//API.sendChat(API.getUser().username+" has been activated!");
+API.sendChat(API.getUser().username+" has been activated!");
 console.log("JavaScript Radio is now Active!");
   }
   startup();
@@ -24,6 +24,15 @@ function join(data) {
   }
 }
 */
+function lookupUser(id) {
+  for (var i = 0; i < API.getUsers().length; i++) {
+    if (API.getUsers()[i].id === id) {
+    return API.getUsers()[i];
+    }
+  }
+  return false;
+}
+
 var cookieText = [" eats a Cookie!"," eats a Cholate Chip Cookie! Yum!", " eats a Cholate Chip Cookie! Wait, are those Raisans?", " opens a Fortune Cookie! It says: 'You are special!'"];
 function checkCommand(data) {
 if (data.type === "message" && data.message.charAt(0) === "!") {
@@ -50,23 +59,23 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
   }*/
   switch (data.message) {
     case "!kill":
-      //if (API.getUser(uid).role >= 1 || data.uid === 5626305) {
+      if (API.getUser(uid).role >= 1 || data.uid === 5626305) {
         API.moderateDeleteChat(data.cid);
       API.off(API.CHAT, checkCommand);
       API.off(API.SCORE_UPDATE, checkScore);
       API.sendChat(API.getUser().username+" Deactivated.");
       console.log("JavaScript Radio is now Deactivated.");
-      //} else {
-      //  API.moderateDeleteChat(data.cid);
-      //  API.sendChat("@"+data.un+" you don't have permission!");
-      //}
+      } else {
+        API.moderateDeleteChat(data.cid);
+        API.sendChat("@"+data.un+" you don't have permission!");
+      }
       break;
     case "!cookie":
       cookieNum = Math.floor((Math.random() * (cookieText.length - 1)) + 0);
       API.moderateDeleteChat(data.cid);
         API.sendChat(data.un+cookieText[cookieNum]);
       break;
-    /*case "!skip":
+    case "!skip":
       if (userRole >= 2) {
         API.moderateDeleteChat(data.cid);
         API.moderateMoveDJ(API.getDJ().id, 5);
@@ -89,10 +98,18 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
     case "!commands":
       API.moderateDeleteChat(data.cid);
       API.sendChat("bit.ly/jsradiocmd");
-      break;*/
+      break;
     case "!upnext":
       API.moderateDeleteChat(data.cid);
       API.sendChat("Next song that is comming: "+API.getNextMedia().media.title+" By: "+API.getNextMedia().media.author);
+      break;
+    case "!eta":
+      var u = lookupUser(chat.uid);
+      if (u.lastEta !== null && (Date.now() - u.lastEta) < 1 * 60 * 60 * 1000) {
+        API.moderateDeleteChat(chat.cid);
+        return void (0);
+      }
+      else u.lastEta = Date.now();
       break;
   }
 }
@@ -108,7 +125,7 @@ function checkScore(data) {
 if (data.positive >= (API.getAudience().length/2) && data.id !== grabbed) {
 $("div#grab").click();
 $($(".grab .menu ul li")[0]).mousedown();
-//API.sendChat(API.getMedia().title+" By: "+API.getMedia().author+" was grabbed! Thank You, @"+API.getDJ().username+"!");
+API.sendChat(API.getMedia().title+" By: "+API.getMedia().author+" was grabbed! Thank You, @"+API.getDJ().username+"!");
 grabbed = data.id;
 }
 }
