@@ -27,7 +27,7 @@ function join(data) {
 function lookupUser(id) {
   for (var i = 0; i < API.getUsers().length; i++) {
     if (API.getUsers()[i].id === id) {
-    return API.getUsers()[i];
+    return API.getUser(id);
     }
   }
   return false;
@@ -132,7 +132,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
         window.location = "plug.dj/"+community;
       } else {
         API.moderateDeleteChat(data.cid);
-        API.sendChat("@"+data.un+" isn't authorized to move bot.")
+        API.sendChat("@"+data.un+" isn't authorized to move bot.");
       }
       break;
   }
