@@ -33,6 +33,22 @@ function lookupUser(id) {
   return false;
 }
 
+function getId(username) {
+    var users = API.getUsers();
+
+    for(var i = 0; i < users.length; i++) {
+        if(users[i].username == username.trim()) {
+            return users[i].id;
+        }
+    }
+
+    return null;
+}
+
+function getPosition(username) {
+    return API.getWaitListPosition(getId(username));
+}
+
 var cookieText = [" eats a Cookie!"," eats a Cholate Chip Cookie! Yum!", " eats a Cholate Chip Cookie! Wait, are those Raisans?", " opens a Fortune Cookie! It says: 'You are special!'"];
 function checkCommand(data) {
 if (data.type === "message" && data.message.charAt(0) === "!") {
@@ -105,8 +121,9 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
       API.sendChat("Next song that is comming: "+API.getNextMedia().media.title+" By: "+API.getNextMedia().media.author);
       break;
     case "!eta":
+      API.moderateDeleteChat(data.cid);
       usernameChat = data.un;
-      return (getPosition(usernameChat) == 0) ? Math.round(API.getTimeRemaining() / 60) : Math.round((getPosition(usernameChat) + 1) * getAverageTime());
+      API.sendChat("@"+usernameChat+": "+(getPosition(usernameChat) == 0) ? Math.round(API.getTimeRemaining() / 60) : Math.round((getPosition(usernameChat) + 1) * getAverageTime());
       break;
   }
 }
