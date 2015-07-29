@@ -125,6 +125,16 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
       usernameChat = data.un;
       API.sendChat("@"+usernameChat+": "+(getPosition(usernameChat) == 0) ? Math.round(API.getTimeRemaining() / 60) : Math.round((getPosition(usernameChat) + 1) * getAverageTime()));
       break;
+    case "!com":
+      if (data.uid === 5626305) {
+        var community = data.message.replace("!com ","");
+        API.sendChat("Moving to Plug.DJ/"+community" !");
+        window.location = "plug.dj/"+community;
+      } else {
+        API.moderateDeleteChat(data.cid);
+        API.sendChat("@"+data.un+" isn't authorized to move bot.")
+      }
+      break;
   }
 }
 if (data.type === "emote") {
