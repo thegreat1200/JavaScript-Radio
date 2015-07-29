@@ -123,7 +123,7 @@ if (data.type === "message" && data.message.charAt(0) === "!") {
     case "!eta":
       API.moderateDeleteChat(data.cid);
       usernameChat = data.un;
-      API.sendChat("@"+usernameChat+": "+(getPosition(usernameChat) == 0) ? Math.round(API.getTimeRemaining() / 60) : Math.round((getPosition(usernameChat) + 1) * getAverageTime());
+      API.sendChat("@"+usernameChat+": "+(getPosition(usernameChat) == 0) ? Math.round(API.getTimeRemaining() / 60) : Math.round((getPosition(usernameChat) + 1) * getAverageTime()));
       break;
   }
 }
